@@ -5,23 +5,36 @@
 //  Created by Nikhil Bhosale on 2024-05-11.
 //
 
-import SwiftUI
+import UIKit
 
 protocol PictureLoaderServiceProtocol {
     func loadLastAstroPictures(for numberOfDays: Int) async throws -> [AstroPics]
+    func getImage(with url: String) async -> UIImage?
 }
 
 final class PictureLoaderService {
     private let apiPictureLoaderService: APIPictureLoaderServiceProtocol
+    private let imageCache: ImageCacheProtocol
 
-    init(apiPictureLoaderService: APIPictureLoaderServiceProtocol) {
+    init(apiPictureLoaderService: APIPictureLoaderServiceProtocol, imageCache: ImageCacheProtocol = ImageCache.shared) {
         self.apiPictureLoaderService = apiPictureLoaderService
+        self.imageCache = imageCache
     }
 }
 
 extension PictureLoaderService: PictureLoaderServiceProtocol {
     func loadLastAstroPictures(for numberOfDays: Int) async throws -> [AstroPics] {
         return try await apiPictureLoaderService.loadPictures(with: getLoadPicturesRequestInput(numberOfDays: numberOfDays))
+    }
+
+    func getImage(with url: String) async -> UIImage? {
+        if let cachedImage = imageCache.get(forKey: url) {
+            return cachedImage
+        }
+        guard let imageData = try? await apiPictureLoaderService.fetchImage(for: url),
+              let uiImage = UIImage(data: imageData) else { return nil }
+        imageCache.set(uiImage, forKey: url)
+        return uiImage
     }
 }
 

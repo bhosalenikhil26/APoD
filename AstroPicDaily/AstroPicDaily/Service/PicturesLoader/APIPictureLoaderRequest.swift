@@ -17,28 +17,32 @@ public enum HTTPMethod: String {
 
 enum APIPictureLoaderRequest: APIRequest {
     case fetchPictures(request: APIPictureLoaderService.LoadPicturesRequest)
+    case fetchImage(url: String)
 
     var baseURLPath: String {
         switch self {
         case .fetchPictures: return ServerEnvironment.serverUrl
+        case .fetchImage: return ""
         }
     }
 
     var path: String {
         switch self {
         case .fetchPictures: return "planetary/apod"
+        case .fetchImage(let url): return url
         }
     }
 
     var method: HTTPMethod {
         switch self {
-        case .fetchPictures: return .get
+        case .fetchPictures, .fetchImage: return .get
         }
     }
 
     var queryParameters: [String: String]? {
         switch self {
         case .fetchPictures(let request): return try? request.asDictionary(keyEncodingStrategy: .convertToSnakeCase) as? [String: String]
+        case .fetchImage: return nil
         }
     }
 
