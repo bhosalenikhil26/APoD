@@ -8,7 +8,7 @@
 import SwiftUI
 
 protocol PictureLoaderServiceProtocol {
-    func loadPictures() async throws -> [AstroPics]
+    func loadLastAstroPictures(for numberOfDays: Int) async throws -> [AstroPics]
 }
 
 final class PictureLoaderService {
@@ -20,18 +20,18 @@ final class PictureLoaderService {
 }
 
 extension PictureLoaderService: PictureLoaderServiceProtocol {
-    func loadPictures() async throws -> [AstroPics] {
-        return try await apiPictureLoaderService.loadPictures(with: getLoadPicturesRequestInput())
+    func loadLastAstroPictures(for numberOfDays: Int) async throws -> [AstroPics] {
+        return try await apiPictureLoaderService.loadPictures(with: getLoadPicturesRequestInput(numberOfDays: numberOfDays))
     }
 }
 
 private extension PictureLoaderService {
-    func getLoadPicturesRequestInput() -> APIPictureLoaderService.LoadPicturesRequest {
+    func getLoadPicturesRequestInput(numberOfDays: Int) -> APIPictureLoaderService.LoadPicturesRequest {
         var startDateString: String
         var endDateString: String?
         
         let today = Date()
-        if let startDate = today.getPastDateBy(noOfDays: 7) {
+        if let startDate = today.getPastDateBy(noOfDays: numberOfDays) {
             startDateString = startDate.yyyyMMdd
             endDateString = today.yyyyMMdd
         } else {

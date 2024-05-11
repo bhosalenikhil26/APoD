@@ -21,6 +21,8 @@
 		C05FA4252BEFA88C00C1C4BB /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4242BEFA88C00C1C4BB /* Codable+Extensions.swift */; };
 		C05FA4272BEFAA8B00C1C4BB /* PictureLoaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4262BEFAA8B00C1C4BB /* PictureLoaderService.swift */; };
 		C05FA4292BEFB0BC00C1C4BB /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4282BEFB0BC00C1C4BB /* Date+Extension.swift */; };
+		C05FA4312BEFDF4100C1C4BB /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4302BEFDF4100C1C4BB /* APIServiceTests.swift */; };
+		C05FA4332BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4322BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		C05FA4242BEFA88C00C1C4BB /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		C05FA4262BEFAA8B00C1C4BB /* PictureLoaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureLoaderService.swift; sourceTree = "<group>"; };
 		C05FA4282BEFB0BC00C1C4BB /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		C05FA4302BEFDF4100C1C4BB /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
+		C05FA4322BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureLoaderServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				C05FA4002BEF8A5300C1C4BB /* AstroPicDailyTests.swift */,
+				C05FA4302BEFDF4100C1C4BB /* APIServiceTests.swift */,
+				C05FA4322BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift */,
 			);
 			path = AstroPicDailyTests;
 			sourceTree = "<group>";
@@ -318,7 +324,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C05FA4312BEFDF4100C1C4BB /* APIServiceTests.swift in Sources */,
 				C05FA4012BEF8A5300C1C4BB /* AstroPicDailyTests.swift in Sources */,
+				C05FA4332BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
