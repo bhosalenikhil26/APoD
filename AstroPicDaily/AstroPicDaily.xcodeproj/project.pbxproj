@@ -14,6 +14,15 @@
 		C05FA4012BEF8A5300C1C4BB /* AstroPicDailyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4002BEF8A5300C1C4BB /* AstroPicDailyTests.swift */; };
 		C05FA40B2BEF8A5300C1C4BB /* AstroPicDailyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA40A2BEF8A5300C1C4BB /* AstroPicDailyUITests.swift */; };
 		C05FA40D2BEF8A5300C1C4BB /* AstroPicDailyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA40C2BEF8A5300C1C4BB /* AstroPicDailyUITestsLaunchTests.swift */; };
+		C05FA41B2BEF8C3F00C1C4BB /* ServerEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA41A2BEF8C3F00C1C4BB /* ServerEnvironment.swift */; };
+		C05FA41E2BEF9A2900C1C4BB /* APIPictureLoaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA41D2BEF9A2900C1C4BB /* APIPictureLoaderService.swift */; };
+		C05FA4202BEF9A3B00C1C4BB /* APIPictureLoaderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA41F2BEF9A3B00C1C4BB /* APIPictureLoaderRequest.swift */; };
+		C05FA4232BEF9AC800C1C4BB /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4222BEF9AC800C1C4BB /* APIService.swift */; };
+		C05FA4252BEFA88C00C1C4BB /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4242BEFA88C00C1C4BB /* Codable+Extensions.swift */; };
+		C05FA4272BEFAA8B00C1C4BB /* PictureLoaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4262BEFAA8B00C1C4BB /* PictureLoaderService.swift */; };
+		C05FA4292BEFB0BC00C1C4BB /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4282BEFB0BC00C1C4BB /* Date+Extension.swift */; };
+		C05FA4312BEFDF4100C1C4BB /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4302BEFDF4100C1C4BB /* APIServiceTests.swift */; };
+		C05FA4332BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4322BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +53,15 @@
 		C05FA4062BEF8A5300C1C4BB /* AstroPicDailyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstroPicDailyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05FA40A2BEF8A5300C1C4BB /* AstroPicDailyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroPicDailyUITests.swift; sourceTree = "<group>"; };
 		C05FA40C2BEF8A5300C1C4BB /* AstroPicDailyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroPicDailyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C05FA41A2BEF8C3F00C1C4BB /* ServerEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerEnvironment.swift; sourceTree = "<group>"; };
+		C05FA41D2BEF9A2900C1C4BB /* APIPictureLoaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPictureLoaderService.swift; sourceTree = "<group>"; };
+		C05FA41F2BEF9A3B00C1C4BB /* APIPictureLoaderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPictureLoaderRequest.swift; sourceTree = "<group>"; };
+		C05FA4222BEF9AC800C1C4BB /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		C05FA4242BEFA88C00C1C4BB /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
+		C05FA4262BEFAA8B00C1C4BB /* PictureLoaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureLoaderService.swift; sourceTree = "<group>"; };
+		C05FA4282BEFB0BC00C1C4BB /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		C05FA4302BEFDF4100C1C4BB /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
+		C05FA4322BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureLoaderServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +112,8 @@
 		C05FA3EE2BEF8A5200C1C4BB /* AstroPicDaily */ = {
 			isa = PBXGroup;
 			children = (
+				C05FA41C2BEF8C8C00C1C4BB /* Service */,
+				C05FA4192BEF8C3200C1C4BB /* Utilities */,
 				C05FA3EF2BEF8A5200C1C4BB /* AstroPicDailyApp.swift */,
 				C05FA3F12BEF8A5200C1C4BB /* ContentView.swift */,
 				C05FA3F32BEF8A5300C1C4BB /* Assets.xcassets */,
@@ -114,6 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				C05FA4002BEF8A5300C1C4BB /* AstroPicDailyTests.swift */,
+				C05FA4302BEFDF4100C1C4BB /* APIServiceTests.swift */,
+				C05FA4322BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift */,
 			);
 			path = AstroPicDailyTests;
 			sourceTree = "<group>";
@@ -125,6 +147,35 @@
 				C05FA40C2BEF8A5300C1C4BB /* AstroPicDailyUITestsLaunchTests.swift */,
 			);
 			path = AstroPicDailyUITests;
+			sourceTree = "<group>";
+		};
+		C05FA4192BEF8C3200C1C4BB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C05FA41A2BEF8C3F00C1C4BB /* ServerEnvironment.swift */,
+				C05FA4242BEFA88C00C1C4BB /* Codable+Extensions.swift */,
+				C05FA4282BEFB0BC00C1C4BB /* Date+Extension.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		C05FA41C2BEF8C8C00C1C4BB /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C05FA4212BEF9AAA00C1C4BB /* PicturesLoader */,
+				C05FA4222BEF9AC800C1C4BB /* APIService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C05FA4212BEF9AAA00C1C4BB /* PicturesLoader */ = {
+			isa = PBXGroup;
+			children = (
+				C05FA41D2BEF9A2900C1C4BB /* APIPictureLoaderService.swift */,
+				C05FA41F2BEF9A3B00C1C4BB /* APIPictureLoaderRequest.swift */,
+				C05FA4262BEFAA8B00C1C4BB /* PictureLoaderService.swift */,
+			);
+			path = PicturesLoader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +309,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C05FA3F22BEF8A5200C1C4BB /* ContentView.swift in Sources */,
+				C05FA4272BEFAA8B00C1C4BB /* PictureLoaderService.swift in Sources */,
+				C05FA4202BEF9A3B00C1C4BB /* APIPictureLoaderRequest.swift in Sources */,
 				C05FA3F02BEF8A5200C1C4BB /* AstroPicDailyApp.swift in Sources */,
+				C05FA4252BEFA88C00C1C4BB /* Codable+Extensions.swift in Sources */,
+				C05FA41B2BEF8C3F00C1C4BB /* ServerEnvironment.swift in Sources */,
+				C05FA4232BEF9AC800C1C4BB /* APIService.swift in Sources */,
+				C05FA41E2BEF9A2900C1C4BB /* APIPictureLoaderService.swift in Sources */,
+				C05FA4292BEFB0BC00C1C4BB /* Date+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +324,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C05FA4312BEFDF4100C1C4BB /* APIServiceTests.swift in Sources */,
 				C05FA4012BEF8A5300C1C4BB /* AstroPicDailyTests.swift in Sources */,
+				C05FA4332BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +490,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,6 +520,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
