@@ -17,22 +17,29 @@ final class APIPictureLoaderService {}
 
 extension APIPictureLoaderService: APIPictureLoaderServiceProtocol {
     func loadPictures(with details: LoadPicturesRequest) async throws -> [AstroPics] {
-       []
+        let request = APIPictureLoaderRequest.fetchPictures(request: details)
+        let data = try await executeApiRequest(request)
+        do {
+            return try JSONDecoder().decode([AstroPics].self, from: data)
+        } catch {
+            throw APIError.couldNotParseToSpecifiedModel
+        }
     }
 }
 
 extension APIPictureLoaderService {
     struct LoadPicturesRequest: Encodable {
-        let demoKey: String
+        let apiKey: String
         let startDate: String
-        let endDate: String
+        let endDate: String?
     }
 
     struct LoadPicturesResponse: Decodable {
         let copyright: String?
         let date: String
         let explanation: String
-        let hdUrl: String
+        let hdurl: String?
         let title: String
+        let url: String
     }
 }
