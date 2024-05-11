@@ -10,6 +10,7 @@ import Foundation
 enum APIError: Error {
     case invalidUrl
     case couldNotParseToSpecifiedModel
+    case failedToParseDataIntoImage
 }
 
 protocol APIRequest {
