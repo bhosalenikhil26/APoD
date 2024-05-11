@@ -7,21 +7,21 @@
 
 import Foundation
 
-typealias AstroPics = APIPictureLoaderService.LoadPicturesResponse
+typealias AstroPic = APIPictureLoaderService.LoadPicturesResponse
 
 protocol APIPictureLoaderServiceProtocol: APIServiceProtocol {
-    func loadPictures(with details: APIPictureLoaderService.LoadPicturesRequest) async throws -> [AstroPics]
+    func loadPictures(with details: APIPictureLoaderService.LoadPicturesRequest) async throws -> [AstroPic]
     func fetchImage(for url: String) async throws -> Data
 }
 
 final class APIPictureLoaderService {}
 
 extension APIPictureLoaderService: APIPictureLoaderServiceProtocol {
-    func loadPictures(with details: LoadPicturesRequest) async throws -> [AstroPics] {
+    func loadPictures(with details: LoadPicturesRequest) async throws -> [AstroPic] {
         let request = APIPictureLoaderRequest.fetchPictures(request: details)
         let data = try await executeApiRequest(request)
         do {
-            return try JSONDecoder().decode([AstroPics].self, from: data)
+            return try JSONDecoder().decode([AstroPic].self, from: data)
         } catch {
             throw APIError.couldNotParseToSpecifiedModel
         }
@@ -40,7 +40,7 @@ extension APIPictureLoaderService {
         let endDate: String?
     }
 
-    struct LoadPicturesResponse: Decodable {
+    struct LoadPicturesResponse: Decodable, Hashable {
         let copyright: String?
         let date: String
         let explanation: String

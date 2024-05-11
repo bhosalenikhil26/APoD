@@ -23,7 +23,7 @@ final class PictureLoaderServiceTests: XCTestCase {
     }
 
     func testLoadLastAstroPictures_whenBothStartAndEndDateArePresent_shouldCreateLoadPicturesRequestWithEndDate() async throws {
-        _ = try await pictureLoaderService.loadLastAstroPictures(for: 7)
+        _ = try await pictureLoaderService.loadLastAstroPictures(numberOfDays: 7)
         XCTAssertNotNil(mockAPIService.loadPicturesRequest)
         XCTAssertNotNil(mockAPIService.loadPicturesRequest?.endDate)
     }
@@ -56,7 +56,7 @@ private final class MockAPIPictureLoaderService: APIPictureLoaderServiceProtocol
     }
     
     var loadPicturesRequest: APIPictureLoaderService.LoadPicturesRequest?
-    func loadPictures(with details: APIPictureLoaderService.LoadPicturesRequest) async throws -> [AstroPics] {
+    func loadPictures(with details: APIPictureLoaderService.LoadPicturesRequest) async throws -> [AstroPic] {
         loadPicturesRequest = details
         return []
     }
