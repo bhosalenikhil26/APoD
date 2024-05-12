@@ -22,8 +22,8 @@ struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
                 }
             case .loading:
                 ActivityIndicator()
-            case .loaded:
-                List(viewModel.astronomyPics, id: \.self) { picture in
+            case .loaded(let astronomyPics):
+                List(astronomyPics, id: \.self) { picture in
                     PictureCellView(viewModel: viewModel.getPictureCellViewModel(for: picture))
                         .listRowSeparator(.hidden)
                         .onTapGesture {
@@ -54,17 +54,18 @@ struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
 }
 
 final class MockAopdListViewModel: AopdListViewModelProtocol {
-    var astronomyPics: [AstroPic] = [
-        AstroPic(
-            copyright: nil,
-            date: "date",
-            explanation: "explanation",
-            hdurl: "hdurl",
-            title: "title",
-            url: "url",
-            mediaType: "image")
-    ]
-    var loadingState: LoadingState = .loaded
+    var loadingState: LoadingState = .loaded(
+        astronomyPics: [
+            AstroPic(
+                copyright: nil,
+                date: "date",
+                explanation: "explanation",
+                hdurl: "hdurl",
+                title: "title",
+                url: "url",
+                mediaType: "image")
+        ]
+    )
     var showAlert: Bool = false
     var pictureDetailsViewModel: PictureDetailsViewModel? = nil
 

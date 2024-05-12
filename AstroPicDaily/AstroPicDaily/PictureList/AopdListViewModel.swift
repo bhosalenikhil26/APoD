@@ -8,7 +8,6 @@
 import Foundation
 
 protocol AopdListViewModelProtocol: ObservableObject {
-    var astronomyPics: [AstroPic] { get }
     var loadingState: LoadingState { get }
     var showAlert: Bool { get set }
     var pictureDetailsViewModel: PictureDetailsViewModel? { get }
@@ -19,12 +18,12 @@ protocol AopdListViewModelProtocol: ObservableObject {
 }
 
 final class AopdListViewModel {
-    @Published var astronomyPics: [AstroPic] = []
     @Published var loadingState: LoadingState = .initial
     @Published var showAlert = false
 
     var pictureDetailsViewModel: PictureDetailsViewModel?
 
+    private var astronomyPics: [AstroPic] = []
     private let pictureLoaderService: PictureLoaderServiceProtocol & ImageDownloaderServiceProtocol
 
     init(pictureLoaderService: PictureLoaderServiceProtocol & ImageDownloaderServiceProtocol) {
@@ -71,7 +70,7 @@ private extension AopdListViewModel {
                 return await handleEmtyPicturesState()
             }
             await updatePictures(pictures)
-            await updateState(.loaded)
+            await updateState(.loaded(astronomyPics: pictures))
         } catch {
             print("Error while loading Pictures", error) //Log remote error
             await handleEmtyPicturesState()
@@ -82,12 +81,11 @@ private extension AopdListViewModel {
         await showAlert(true)
         await updateState(.initial)
     }
-
 }
 
 enum LoadingState {
     case initial
     case loading
-    case loaded
+    case loaded(astronomyPics: [AstroPic])
 }
 
