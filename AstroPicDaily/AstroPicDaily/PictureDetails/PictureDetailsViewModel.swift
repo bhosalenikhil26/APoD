@@ -21,11 +21,15 @@ final class PictureDetailsViewModel {
     @Published var image: UIImage? = UIImage(named: "image-placeholder")
 
     private let astroPic: AstroPic
-    private let pictureLoaderService: PictureLoaderServiceProtocol
+    private let pictureLoaderService: ImageDownloaderServiceProtocol
 
-    init(astroPic: AstroPic, pictureLoaderService: PictureLoaderServiceProtocol) {
+    init(astroPic: AstroPic, pictureLoaderService: ImageDownloaderServiceProtocol) {
         self.astroPic = astroPic
         self.pictureLoaderService = pictureLoaderService
+
+        Task {
+            await fetchImage()
+        }
     }
 }
 
@@ -52,8 +56,9 @@ extension PictureDetailsViewModel: PictureDetailsViewModelProtocol {
 }
 
 private extension PictureDetailsViewModel {
-    func fetchImage() async {
-        guard let uiImage = await pictureLoaderService.getImage(with: astroPic.url) else {
+    @MainActor func fetchImage() async {
+        guard astroPic.isImageTypeMedia else { return }
+        guard let uiImage = await pictureLoaderService.getImage(with: astroPic.hdurl ?? astroPic.url) else {
             print("Unable to fetch image") //Log remote error
             return
        }

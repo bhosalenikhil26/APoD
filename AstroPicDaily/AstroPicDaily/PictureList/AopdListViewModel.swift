@@ -11,40 +11,42 @@ protocol AopdListViewModelProtocol: ObservableObject {
     var astronomyPics: [AstroPic] { get }
     var loadingState: LoadingState { get }
     var showAlert: Bool { get set }
-    var shouldShowPictureDetails: Bool { get set }
     var pictureDetailsViewModel: PictureDetailsViewModel? { get }
 
-    func viewAppeared() async
     func didSelectPicture(_ picture: AstroPic) async
     func didTapRetry() async
+    func getPictureCellViewModel(for picture: AstroPic) -> PictureCellViewModel
 }
 
 final class AopdListViewModel {
     @Published var astronomyPics: [AstroPic] = []
     @Published var loadingState: LoadingState = .initial
     @Published var showAlert = false
-    @Published var shouldShowPictureDetails = false
+
     var pictureDetailsViewModel: PictureDetailsViewModel?
 
-    private let pictureLoaderService: PictureLoaderServiceProtocol
+    private let pictureLoaderService: PictureLoaderServiceProtocol & ImageDownloaderServiceProtocol
 
-    init(pictureLoaderService: PictureLoaderServiceProtocol) {
+    init(pictureLoaderService: PictureLoaderServiceProtocol & ImageDownloaderServiceProtocol) {
         self.pictureLoaderService = pictureLoaderService
+        Task {
+            await loadPictures()
+        }
     }
 }
 
 extension AopdListViewModel: AopdListViewModelProtocol {
-    func viewAppeared() async {
-        await loadPictures()
-    }
-    
     func didTapRetry() async {
         await loadPictures()
     }
 
     func didSelectPicture(_ picture: AstroPic) async {
         pictureDetailsViewModel = PictureDetailsViewModel(astroPic: picture, pictureLoaderService: pictureLoaderService)
-        await shouldShowPictureDetails(true)
+    }
+
+    func getPictureCellViewModel(for picture: AstroPic) -> PictureCellViewModel {
+        PictureCellViewModel.init(picture: picture,
+                                  imageDownloaderService: pictureLoaderService)
     }
 }
 
@@ -59,10 +61,6 @@ private extension AopdListViewModel {
 
     @MainActor func updatePictures(_ pictures: [AstroPic]) async {
         self.astronomyPics = pictures
-    }
-
-    @MainActor func shouldShowPictureDetails(_ shouldShow: Bool) async {
-        shouldShowPictureDetails = shouldShow
     }
 
     func loadPictures() async {
