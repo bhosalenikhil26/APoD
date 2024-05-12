@@ -65,7 +65,7 @@ private extension AopdListViewModel {
             await updatePictures(pictures)
             await updateState(.loaded)
         } catch {
-            print("Error while loading countries", error) //Log remote error
+            print("Error while loading Pictures", error) //Log remote error
             await showAlert(true)
             await updateState(.initial)
         }
