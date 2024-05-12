@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
     @ObservedObject var viewModel: ViewModel
-    @State private var selectedPicture: AstroPic?
 
     var body: some View {
         ZStack {
@@ -21,7 +20,7 @@ struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
                     }
                 }
             case .loading:
-                Text("Show Loader") //TODO: Show activity indicator
+                ActivityIndicator()
             case .loaded:
                 List(viewModel.astronomyPics, id: \.self) { picture in
                     Text(picture.title)
