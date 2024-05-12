@@ -18,32 +18,7 @@ struct PictureDetailsView<ViewModel: PictureDetailsViewModelProtocol>: View {
                 if let image = viewModel.image {
                     pictureView(image)
                 }
-                VStack(alignment: .leading) {
-                    Text(viewModel.title)
-                        .font(.title)
-                        .padding(.bottom, 5)
-
-                    HStack {
-                        if let copyright = viewModel.copyright {
-                            Text("Copyright: \(copyright)")
-                                .font(.headline)
-                        }
-                        Spacer()
-                        Text(viewModel.date)
-                            .font(.headline)
-                    }
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-
-                    Divider()
-
-
-                    Text("\(viewModel.explaination)")
-                        .font(.body)
-                        .foregroundStyle(.secondary)
-                        .padding(.bottom, 5)
-                }
-                .padding()
+                getTextContainerView()
                 Spacer()
             }
         }
@@ -79,6 +54,43 @@ private extension PictureDetailsView {
             }
             .shadow(radius: 7)
             .padding()
+    }
+
+    func getTextContainerView() -> some View {
+        VStack(alignment: .leading) {
+            titleView()
+            copyrightAndDateView()
+            Divider()
+            explainationView()
+        }
+        .padding()
+    }
+
+    func titleView() -> some View {
+        Text(viewModel.title)
+            .font(.title)
+            .padding(.bottom, 5)
+    }
+
+    func copyrightAndDateView() -> some View {
+        HStack {
+            if let copyright = viewModel.copyright {
+                Text("Copyright: \(copyright)")
+                    .font(.headline)
+            }
+            Spacer()
+            Text(viewModel.date)
+                .font(.headline)
+        }
+        .font(.subheadline)
+        .foregroundStyle(.secondary)
+    }
+
+    func explainationView() -> some View {
+        Text("\(viewModel.explaination)")
+            .font(.body)
+            .foregroundStyle(.secondary)
+            .padding(.bottom, 5)
     }
 }
 

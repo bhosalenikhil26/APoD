@@ -23,17 +23,7 @@ struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
             case .loading:
                 ActivityIndicator()
             case .loaded(let astronomyPics):
-                List(astronomyPics, id: \.self) { picture in
-                    PictureCellView(viewModel: viewModel.getPictureCellViewModel(for: picture))
-                        .listRowSeparator(.hidden)
-                        .onTapGesture {
-                            Task {
-                                await viewModel.didSelectPicture(picture)
-                                shouldShowPictureDetails = true
-                            }
-                        }
-                }
-                .listStyle(.plain)
+                getPictureListView(astronomyPics)
             }
         }
         .alert("Something went wrong, try again in a moment.", isPresented: $viewModel.showAlert) {
@@ -46,6 +36,22 @@ struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
                 EmptyView()
             }
         }
+    }
+}
+
+private extension AopdListView {
+    func getPictureListView(_ astronomyPics: [AstroPic]) -> some View {
+        List(astronomyPics, id: \.self) { picture in
+            PictureCellView(viewModel: viewModel.getPictureCellViewModel(for: picture))
+                .listRowSeparator(.hidden)
+                .onTapGesture {
+                    Task {
+                        await viewModel.didSelectPicture(picture)
+                        shouldShowPictureDetails = true
+                    }
+                }
+        }
+        .listStyle(.plain)
     }
 }
 
