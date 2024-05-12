@@ -57,4 +57,8 @@ extension AstroPic {
     var isImageTypeMedia: Bool {
         mediaType == "image"
     }
+
+    var imageUrl: String {
+        hdurl ?? url
+    }
 }

@@ -16,8 +16,8 @@ protocol PictureCellViewModelProtocol: ObservableObject {
 final class PictureCellViewModel {
     @Published var image: UIImage?
 
-    private let picture: AstroPic
-    private let imageDownloaderService: ImageDownloaderServiceProtocol
+    let picture: AstroPic
+    let imageDownloaderService: ImageDownloaderServiceProtocol
 
     init(picture: AstroPic, imageDownloaderService: ImageDownloaderServiceProtocol) {
         self.picture = picture
@@ -45,7 +45,7 @@ private extension PictureCellViewModel {
             image = UIImage(named: "image-placeholder")
             return
         }
-        guard let uiImage = await imageDownloaderService.getImage(with: picture.hdurl ?? picture.url) else {
+        guard let uiImage = await imageDownloaderService.getImage(with: picture.imageUrl) else {
             print("Unable to fetch image") //Log remote error
             image = UIImage(named: "image-placeholder")
             return
