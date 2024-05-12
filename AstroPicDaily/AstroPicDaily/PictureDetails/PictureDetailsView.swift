@@ -24,8 +24,10 @@ struct PictureDetailsView<ViewModel: PictureDetailsViewModelProtocol>: View {
                         .padding(.bottom, 5)
 
                     HStack {
-                        Text("Copyright: \(viewModel.copyright ?? "copyright")")
-                            .font(.headline)
+                        if let copyright = viewModel.copyright {
+                            Text("Copyright: \(copyright)")
+                                .font(.headline)
+                        }
                         Spacer()
                         Text(viewModel.date)
                             .font(.headline)

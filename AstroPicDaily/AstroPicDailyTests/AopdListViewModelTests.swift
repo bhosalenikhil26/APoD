@@ -24,6 +24,7 @@ final class AopdListViewModelTests: XCTestCase {
 
     func testLoadPictures_whenLoadPicturesAPISucceeds_shouldUpdateStateToLoadedAndUpdateAstronomyPicsArray() async {
         mockPictureLoaderService.loadPicturesShouldFail = false
+        mockPictureLoaderService.astroPicturesArray = [astroPic]
         XCTAssertTrue(aopdListViewModel.loadingState == .initial)
         await aopdListViewModel.viewAppeared()
         XCTAssertTrue(aopdListViewModel.astronomyPics.count == 1)
@@ -40,20 +41,36 @@ final class AopdListViewModelTests: XCTestCase {
         XCTAssertTrue(aopdListViewModel.loadingState == .initial)
         XCTAssertTrue(aopdListViewModel.showAlert)
     }
-}
 
-private final class MockPictureLoaderService: PictureLoaderServiceProtocol {
-    var loadPicturesShouldFail: Bool = false
+    func testLoadPictures_whenLoadPicturesAPISucceedsButArrayIsEmpty_shouldUpdateStateBackToInitialAndShowAlert() async {
+        mockPictureLoaderService.loadPicturesShouldFail = false
+        mockPictureLoaderService.astroPicturesArray = []
+        XCTAssertTrue(aopdListViewModel.loadingState == .initial)
+        await aopdListViewModel.viewAppeared()
+        XCTAssertTrue(aopdListViewModel.astronomyPics.count == 0)
+        XCTAssertTrue(aopdListViewModel.loadingState == .initial)
+        XCTAssertTrue(aopdListViewModel.showAlert)
+    }
 
-    func loadLastAstroPictures(numberOfDays: Int) async throws -> [AstroPicDaily.AstroPic] {
-        guard !loadPicturesShouldFail else { throw APIError.couldNotParseToSpecifiedModel }
-        return [AstroPic(
+
+    private var astroPic: AstroPic {
+        AstroPic(
             copyright: nil,
             date: "date",
             explanation: "explanation",
             hdurl: "hdurl",
             title: "title",
-            url: "url")]
+            url: "url")
+    }
+}
+
+private final class MockPictureLoaderService: PictureLoaderServiceProtocol {
+    var loadPicturesShouldFail: Bool = false
+    var astroPicturesArray = [AstroPic]()
+
+    func loadLastAstroPictures(numberOfDays: Int) async throws -> [AstroPicDaily.AstroPic] {
+        guard !loadPicturesShouldFail else { throw APIError.couldNotParseToSpecifiedModel }
+        return astroPicturesArray
     }
     
     func getImage(with url: String) async -> UIImage? {

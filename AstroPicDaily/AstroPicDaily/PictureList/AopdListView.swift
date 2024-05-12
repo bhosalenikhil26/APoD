@@ -40,6 +40,14 @@ struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
                 await viewModel.viewAppeared()
             }
         }
+        .sheet(isPresented: $viewModel.shouldShowPictureDetails) {
+            if let detailsViewModel = viewModel.pictureDetailsViewModel {
+              PictureDetailsView(viewModel: detailsViewModel)
+            } else {
+                EmptyView()
+            }
+        }
+
     }
 }
 
@@ -48,10 +56,19 @@ struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
 }
 
 final class MockAopdListViewModel: AopdListViewModelProtocol {
-    var astronomyPics: [AstroPic] = []
-    var loadingState: LoadingState = .initial
+    var astronomyPics: [AstroPic] = [
+        AstroPic(
+            copyright: nil,
+            date: "date",
+            explanation: "explanation",
+            hdurl: "hdurl",
+            title: "title",
+            url: "url")
+    ]
+    var loadingState: LoadingState = .loaded
     var showAlert: Bool = false
     var shouldShowPictureDetails: Bool = false
+    var pictureDetailsViewModel: PictureDetailsViewModel? = nil
 
     func viewAppeared() async {}
     func didTapRetry() async {}

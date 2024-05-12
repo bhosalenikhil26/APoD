@@ -12,6 +12,7 @@ protocol AopdListViewModelProtocol: ObservableObject {
     var loadingState: LoadingState { get }
     var showAlert: Bool { get set }
     var shouldShowPictureDetails: Bool { get set }
+    var pictureDetailsViewModel: PictureDetailsViewModel? { get }
 
     func viewAppeared() async
     func didSelectPicture(_ picture: AstroPic) async
@@ -23,6 +24,7 @@ final class AopdListViewModel {
     @Published var loadingState: LoadingState = .initial
     @Published var showAlert = false
     @Published var shouldShowPictureDetails = false
+    var pictureDetailsViewModel: PictureDetailsViewModel?
 
     private let pictureLoaderService: PictureLoaderServiceProtocol
 
@@ -41,16 +43,17 @@ extension AopdListViewModel: AopdListViewModelProtocol {
     }
 
     func didSelectPicture(_ picture: AstroPic) async {
-        print(picture.title)
+        pictureDetailsViewModel = PictureDetailsViewModel(astroPic: picture, pictureLoaderService: pictureLoaderService)
+        await shouldShowPictureDetails(true)
     }
 }
 
 private extension AopdListViewModel {
-    @MainActor func updateState(_ state: LoadingState) {
+    @MainActor func updateState(_ state: LoadingState) async {
         loadingState = state
     }
 
-    @MainActor func showAlert(_ shouldShow: Bool) {
+    @MainActor func showAlert(_ shouldShow: Bool) async {
         showAlert = shouldShow
     }
 
@@ -58,18 +61,30 @@ private extension AopdListViewModel {
         self.astronomyPics = pictures
     }
 
+    @MainActor func shouldShowPictureDetails(_ shouldShow: Bool) async {
+        shouldShowPictureDetails = shouldShow
+    }
+
     func loadPictures() async {
         await updateState(.loading)
         do {
             let pictures = try await pictureLoaderService.loadLastAstroPictures(numberOfDays: 6)
+            guard !pictures.isEmpty else {
+                return await handleEmtyPicturesState()
+            }
             await updatePictures(pictures)
             await updateState(.loaded)
         } catch {
             print("Error while loading Pictures", error) //Log remote error
-            await showAlert(true)
-            await updateState(.initial)
+            await handleEmtyPicturesState()
         }
     }
+
+    func handleEmtyPicturesState() async {
+        await showAlert(true)
+        await updateState(.initial)
+    }
+
 }
 
 enum LoadingState {
