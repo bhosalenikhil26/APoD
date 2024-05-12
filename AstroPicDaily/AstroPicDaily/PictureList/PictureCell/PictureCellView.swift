@@ -15,13 +15,15 @@ struct PictureCellView<ViewModel: PictureCellViewModelProtocol>: View {
             if let uiImage = viewModel.image {
                 Image(uiImage: uiImage)
                     .resizable()
+                    .frame(height: 300)
                     .scaledToFit()
                     .clipShape(
                         RoundedRectangle(cornerRadius: 20)
                     )
                     .clipped()
             } else {
-               ActivityIndicator()
+                ActivityIndicator()
+                    .frame(height: 300)
             }
             VStack {
                 Spacer()
@@ -36,11 +38,11 @@ struct PictureCellView<ViewModel: PictureCellViewModelProtocol>: View {
                     Text(viewModel.date)
                         .bold()
                 }
-                .font(.caption)
+                .font(.callout)
                 .padding()
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: 350)
+        .frame(maxWidth: .infinity)
         .foregroundStyle(.white)
     }
 }
