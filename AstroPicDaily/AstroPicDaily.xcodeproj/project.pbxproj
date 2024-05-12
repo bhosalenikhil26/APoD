@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C05FA3F02BEF8A5200C1C4BB /* AstroPicDailyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA3EF2BEF8A5200C1C4BB /* AstroPicDailyApp.swift */; };
-		C05FA3F22BEF8A5200C1C4BB /* AopdListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA3F12BEF8A5200C1C4BB /* AopdListView.swift */; };
+		C05FA3F22BEF8A5200C1C4BB /* AstroPicListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA3F12BEF8A5200C1C4BB /* AstroPicListView.swift */; };
 		C05FA3F42BEF8A5300C1C4BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C05FA3F32BEF8A5300C1C4BB /* Assets.xcassets */; };
 		C05FA3F72BEF8A5300C1C4BB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C05FA3F62BEF8A5300C1C4BB /* Preview Assets.xcassets */; };
 		C05FA4012BEF8A5300C1C4BB /* AstroPicDailyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4002BEF8A5300C1C4BB /* AstroPicDailyTests.swift */; };
@@ -24,8 +24,8 @@
 		C05FA4312BEFDF4100C1C4BB /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4302BEFDF4100C1C4BB /* APIServiceTests.swift */; };
 		C05FA4332BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4322BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift */; };
 		C05FA4352BEFECDF00C1C4BB /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4342BEFECDF00C1C4BB /* ImageCache.swift */; };
-		C05FA4382BEFFBC500C1C4BB /* AopdListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4372BEFFBC500C1C4BB /* AopdListViewModel.swift */; };
-		C0CD7E602BF0AF5300D14EE7 /* AopdListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CD7E5F2BF0AF5300D14EE7 /* AopdListViewModelTests.swift */; };
+		C05FA4382BEFFBC500C1C4BB /* AstroPicListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4372BEFFBC500C1C4BB /* AstroPicListViewModel.swift */; };
+		C0CD7E602BF0AF5300D14EE7 /* AstroPicListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CD7E5F2BF0AF5300D14EE7 /* AstroPicListViewModelTests.swift */; };
 		C0CD7E632BF0B38E00D14EE7 /* PictureDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CD7E622BF0B38E00D14EE7 /* PictureDetailsView.swift */; };
 		C0CD7E652BF0B39F00D14EE7 /* PictureDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CD7E642BF0B39F00D14EE7 /* PictureDetailsViewModel.swift */; };
 		C0CD7E672BF0CE5A00D14EE7 /* PictureDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CD7E662BF0CE5A00D14EE7 /* PictureDetailsViewModelTests.swift */; };
@@ -54,7 +54,7 @@
 /* Begin PBXFileReference section */
 		C05FA3EC2BEF8A5200C1C4BB /* AstroPicDaily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AstroPicDaily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05FA3EF2BEF8A5200C1C4BB /* AstroPicDailyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroPicDailyApp.swift; sourceTree = "<group>"; };
-		C05FA3F12BEF8A5200C1C4BB /* AopdListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AopdListView.swift; sourceTree = "<group>"; };
+		C05FA3F12BEF8A5200C1C4BB /* AstroPicListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroPicListView.swift; sourceTree = "<group>"; };
 		C05FA3F32BEF8A5300C1C4BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C05FA3F62BEF8A5300C1C4BB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C05FA3FC2BEF8A5300C1C4BB /* AstroPicDailyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstroPicDailyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,8 +72,8 @@
 		C05FA4302BEFDF4100C1C4BB /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
 		C05FA4322BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureLoaderServiceTests.swift; sourceTree = "<group>"; };
 		C05FA4342BEFECDF00C1C4BB /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
-		C05FA4372BEFFBC500C1C4BB /* AopdListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AopdListViewModel.swift; sourceTree = "<group>"; };
-		C0CD7E5F2BF0AF5300D14EE7 /* AopdListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AopdListViewModelTests.swift; sourceTree = "<group>"; };
+		C05FA4372BEFFBC500C1C4BB /* AstroPicListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroPicListViewModel.swift; sourceTree = "<group>"; };
+		C0CD7E5F2BF0AF5300D14EE7 /* AstroPicListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroPicListViewModelTests.swift; sourceTree = "<group>"; };
 		C0CD7E622BF0B38E00D14EE7 /* PictureDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureDetailsView.swift; sourceTree = "<group>"; };
 		C0CD7E642BF0B39F00D14EE7 /* PictureDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureDetailsViewModel.swift; sourceTree = "<group>"; };
 		C0CD7E662BF0CE5A00D14EE7 /* PictureDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureDetailsViewModelTests.swift; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 				C05FA4002BEF8A5300C1C4BB /* AstroPicDailyTests.swift */,
 				C05FA4302BEFDF4100C1C4BB /* APIServiceTests.swift */,
 				C05FA4322BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift */,
-				C0CD7E5F2BF0AF5300D14EE7 /* AopdListViewModelTests.swift */,
+				C0CD7E5F2BF0AF5300D14EE7 /* AstroPicListViewModelTests.swift */,
 				C0CD7E662BF0CE5A00D14EE7 /* PictureDetailsViewModelTests.swift */,
 			);
 			path = AstroPicDailyTests;
@@ -205,8 +205,8 @@
 			isa = PBXGroup;
 			children = (
 				C0CD7E6E2BF0F26B00D14EE7 /* PictureCell */,
-				C05FA3F12BEF8A5200C1C4BB /* AopdListView.swift */,
-				C05FA4372BEFFBC500C1C4BB /* AopdListViewModel.swift */,
+				C05FA3F12BEF8A5200C1C4BB /* AstroPicListView.swift */,
+				C05FA4372BEFFBC500C1C4BB /* AstroPicListViewModel.swift */,
 			);
 			path = PictureList;
 			sourceTree = "<group>";
@@ -360,12 +360,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C05FA4352BEFECDF00C1C4BB /* ImageCache.swift in Sources */,
-				C05FA3F22BEF8A5200C1C4BB /* AopdListView.swift in Sources */,
+				C05FA3F22BEF8A5200C1C4BB /* AstroPicListView.swift in Sources */,
 				C05FA4272BEFAA8B00C1C4BB /* PictureLoaderService.swift in Sources */,
 				C05FA4202BEF9A3B00C1C4BB /* APIPictureLoaderRequest.swift in Sources */,
 				C0CD7E692BF0D55A00D14EE7 /* ActivityIndicator.swift in Sources */,
 				C0CD7E632BF0B38E00D14EE7 /* PictureDetailsView.swift in Sources */,
-				C05FA4382BEFFBC500C1C4BB /* AopdListViewModel.swift in Sources */,
+				C05FA4382BEFFBC500C1C4BB /* AstroPicListViewModel.swift in Sources */,
 				C05FA3F02BEF8A5200C1C4BB /* AstroPicDailyApp.swift in Sources */,
 				C0CD7E702BF0F28D00D14EE7 /* PictureCellView.swift in Sources */,
 				C05FA4252BEFA88C00C1C4BB /* Codable+Extensions.swift in Sources */,
@@ -385,7 +385,7 @@
 				C05FA4312BEFDF4100C1C4BB /* APIServiceTests.swift in Sources */,
 				C0CD7E672BF0CE5A00D14EE7 /* PictureDetailsViewModelTests.swift in Sources */,
 				C05FA4012BEF8A5300C1C4BB /* AstroPicDailyTests.swift in Sources */,
-				C0CD7E602BF0AF5300D14EE7 /* AopdListViewModelTests.swift in Sources */,
+				C0CD7E602BF0AF5300D14EE7 /* AstroPicListViewModelTests.swift in Sources */,
 				C05FA4332BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Network
 
 protocol ImageCacheProtocol {
     func set(_ image: UIImage, forKey key: String)
@@ -29,4 +30,3 @@ extension ImageCache: ImageCacheProtocol {
         return cache.object(forKey: key as NSString)
     }
 }
-

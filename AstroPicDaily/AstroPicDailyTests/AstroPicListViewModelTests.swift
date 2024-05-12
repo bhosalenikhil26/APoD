@@ -8,58 +8,58 @@
 import XCTest
 @testable import AstroPicDaily
 
-final class AopdListViewModelTests: XCTestCase {
-    private var aopdListViewModel: AopdListViewModel!
+final class AstroPicListViewModelTests: XCTestCase {
+    private var astroPicListViewModel: AstroPicListViewModel!
     private var mockPictureLoaderService: MockPictureLoaderService!
 
     override func setUpWithError() throws {
         mockPictureLoaderService = MockPictureLoaderService()
-        aopdListViewModel = AopdListViewModel(pictureLoaderService: mockPictureLoaderService)
+        astroPicListViewModel = AstroPicListViewModel(pictureLoaderService: mockPictureLoaderService)
     }
 
     override func tearDownWithError() throws {
         mockPictureLoaderService = nil
-        aopdListViewModel = nil
+        astroPicListViewModel = nil
     }
 
     func testLoadPictures_whenLoadPicturesAPISucceeds_shouldUpdateStateToLoadedAndUpdateAstronomyPicsArray() async {
         mockPictureLoaderService.loadPicturesShouldFail = false
         mockPictureLoaderService.astroPicturesArray = [astroPic]
-        guard case LoadingState.initial = aopdListViewModel.loadingState else {
+        guard case LoadingState.initial = astroPicListViewModel.loadingState else {
             return XCTFail()
         }
-        await aopdListViewModel.viewAppeared()
-        guard case LoadingState.loaded(let astronomyPics) = aopdListViewModel.loadingState else {
+        await astroPicListViewModel.viewAppeared()
+        guard case LoadingState.loaded(let astronomyPics) = astroPicListViewModel.loadingState else {
             return XCTFail()
         }
         XCTAssertTrue(astronomyPics.count == 1)
         XCTAssertTrue(astronomyPics[0].title == "title")
-        XCTAssertFalse(aopdListViewModel.showAlert)
+        XCTAssertFalse(astroPicListViewModel.showAlert)
     }
 
     func testLoadPictures_whenLoadPicturesAPIFails_shouldUpdateStateBackToInitialAndShowAlert() async {
         mockPictureLoaderService.loadPicturesShouldFail = true
-        guard case LoadingState.initial = aopdListViewModel.loadingState else {
+        guard case LoadingState.initial = astroPicListViewModel.loadingState else {
             return XCTFail()
         }
-        await aopdListViewModel.viewAppeared()
-        guard case LoadingState.initial = aopdListViewModel.loadingState else {
+        await astroPicListViewModel.viewAppeared()
+        guard case LoadingState.initial = astroPicListViewModel.loadingState else {
             return XCTFail()
         }
-        XCTAssertTrue(aopdListViewModel.showAlert)
+        XCTAssertTrue(astroPicListViewModel.showAlert)
     }
 
     func testLoadPictures_whenLoadPicturesAPISucceedsButArrayIsEmpty_shouldUpdateStateBackToInitialAndShowAlert() async {
         mockPictureLoaderService.loadPicturesShouldFail = false
         mockPictureLoaderService.astroPicturesArray = []
-        guard case LoadingState.initial = aopdListViewModel.loadingState else {
+        guard case LoadingState.initial = astroPicListViewModel.loadingState else {
             return XCTFail()
         }
-        await aopdListViewModel.viewAppeared()
-        guard case LoadingState.initial = aopdListViewModel.loadingState else {
+        await astroPicListViewModel.viewAppeared()
+        guard case LoadingState.initial = astroPicListViewModel.loadingState else {
             return XCTFail()
         }
-        XCTAssertTrue(aopdListViewModel.showAlert)
+        XCTAssertTrue(astroPicListViewModel.showAlert)
     }
 
 

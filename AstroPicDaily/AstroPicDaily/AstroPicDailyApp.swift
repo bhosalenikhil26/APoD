@@ -11,12 +11,12 @@ import SwiftUI
 struct AstroPicDailyApp: App {
     var body: some Scene {
         WindowGroup {
-            AopdListView(viewModel: getAopdListViewModel())
+            AstroPicListView(viewModel: getAopdListViewModel())
         }
     }
 
-    private func getAopdListViewModel() -> AopdListViewModel {
-        AopdListViewModel(
+    private func getAopdListViewModel() -> AstroPicListViewModel {
+        AstroPicListViewModel(
             pictureLoaderService: PictureLoaderService(
                 apiPictureLoaderService: APIPictureLoaderService(),
                 imageCache: ImageCache.shared)
