@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
     @ObservedObject var viewModel: ViewModel
+    @State var shouldShowPictureDetails: Bool = false
 
     var body: some View {
         ZStack {
@@ -23,31 +24,28 @@ struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
                 ActivityIndicator()
             case .loaded:
                 List(viewModel.astronomyPics, id: \.self) { picture in
-                    Text(picture.title)
+                    PictureCellView(viewModel: viewModel.getPictureCellViewModel(for: picture))
+                        .listRowSeparator(.hidden)
                         .onTapGesture {
                             Task {
                                 await viewModel.didSelectPicture(picture)
+                                shouldShowPictureDetails = true
                             }
                         }
                 }
+                .listStyle(.plain)
             }
         }
         .alert("Something went wrong, try again in a moment.", isPresented: $viewModel.showAlert) {
             Button("Okay", role: .cancel) {}
         }
-        .onAppear {
-            Task {
-                await viewModel.viewAppeared()
-            }
-        }
-        .sheet(isPresented: $viewModel.shouldShowPictureDetails) {
+        .sheet(isPresented: $shouldShowPictureDetails) {
             if let detailsViewModel = viewModel.pictureDetailsViewModel {
               PictureDetailsView(viewModel: detailsViewModel)
             } else {
                 EmptyView()
             }
         }
-
     }
 }
 
@@ -63,14 +61,23 @@ final class MockAopdListViewModel: AopdListViewModelProtocol {
             explanation: "explanation",
             hdurl: "hdurl",
             title: "title",
-            url: "url")
+            url: "url",
+            mediaType: "image")
     ]
     var loadingState: LoadingState = .loaded
     var showAlert: Bool = false
-    var shouldShowPictureDetails: Bool = false
     var pictureDetailsViewModel: PictureDetailsViewModel? = nil
 
     func viewAppeared() async {}
     func didTapRetry() async {}
     func didSelectPicture(_ picture: AstroPic) async {}
+    func getPictureCellViewModel(for picture: AstroPic) -> PictureCellViewModel {
+        PictureCellViewModel(picture: picture, imageDownloaderService: MockDownloaderService())
+    }
+}
+
+final class MockDownloaderService: ImageDownloaderServiceProtocol {
+    func getImage(with url: String) async -> UIImage? {
+        UIImage(named: "image-placeholder")
+    }
 }

@@ -9,6 +9,9 @@ import UIKit
 
 protocol PictureLoaderServiceProtocol {
     func loadLastAstroPictures(numberOfDays: Int) async throws -> [AstroPic]
+}
+
+protocol ImageDownloaderServiceProtocol {
     func getImage(with url: String) async -> UIImage?
 }
 
@@ -22,7 +25,7 @@ final class PictureLoaderService {
     }
 }
 
-extension PictureLoaderService: PictureLoaderServiceProtocol {
+extension PictureLoaderService: PictureLoaderServiceProtocol, ImageDownloaderServiceProtocol {
     func loadLastAstroPictures(numberOfDays: Int) async throws -> [AstroPic] {
         return try await apiPictureLoaderService.loadPictures(with: getLoadPicturesRequestInput(numberOfDays: numberOfDays))
     }
