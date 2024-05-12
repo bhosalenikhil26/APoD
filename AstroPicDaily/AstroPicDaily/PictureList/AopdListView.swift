@@ -22,18 +22,8 @@ struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
                 }
             case .loading:
                 ActivityIndicator()
-            case .loaded:
-                List(viewModel.astronomyPics, id: \.self) { picture in
-                    PictureCellView(viewModel: viewModel.getPictureCellViewModel(for: picture))
-                        .listRowSeparator(.hidden)
-                        .onTapGesture {
-                            Task {
-                                await viewModel.didSelectPicture(picture)
-                                shouldShowPictureDetails = true
-                            }
-                        }
-                }
-                .listStyle(.plain)
+            case .loaded(let astronomyPics):
+                getPictureListView(astronomyPics)
             }
         }
         .alert("Something went wrong, try again in a moment.", isPresented: $viewModel.showAlert) {
@@ -46,6 +36,27 @@ struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
                 EmptyView()
             }
         }
+        .onAppear {
+            Task {
+                await viewModel.viewAppeared()
+            }
+        }
+    }
+}
+
+private extension AopdListView {
+    func getPictureListView(_ astronomyPics: [AstroPic]) -> some View {
+        List(astronomyPics, id: \.self) { picture in
+            PictureCellView(viewModel: viewModel.getPictureCellViewModel(for: picture))
+                .listRowSeparator(.hidden)
+                .onTapGesture {
+                    Task {
+                        await viewModel.didSelectPicture(picture)
+                        shouldShowPictureDetails = true
+                    }
+                }
+        }
+        .listStyle(.plain)
     }
 }
 
@@ -54,17 +65,18 @@ struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
 }
 
 final class MockAopdListViewModel: AopdListViewModelProtocol {
-    var astronomyPics: [AstroPic] = [
-        AstroPic(
-            copyright: nil,
-            date: "date",
-            explanation: "explanation",
-            hdurl: "hdurl",
-            title: "title",
-            url: "url",
-            mediaType: "image")
-    ]
-    var loadingState: LoadingState = .loaded
+    var loadingState: LoadingState = .loaded(
+        astronomyPics: [
+            AstroPic(
+                copyright: nil,
+                date: "date",
+                explanation: "explanation",
+                hdurl: "hdurl",
+                title: "title",
+                url: "url",
+                mediaType: "image")
+        ]
+    )
     var showAlert: Bool = false
     var pictureDetailsViewModel: PictureDetailsViewModel? = nil
 

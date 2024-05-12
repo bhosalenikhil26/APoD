@@ -9,7 +9,7 @@ import XCTest
 @testable import AstroPicDaily
 
 final class PictureLoaderServiceTests: XCTestCase {
-    private var pictureLoaderService: PictureLoaderServiceProtocol!
+    private var pictureLoaderService: (PictureLoaderServiceProtocol & ImageDownloaderServiceProtocol)!
     private var mockAPIService: MockAPIPictureLoaderService!
 
     override func setUpWithError() throws {
