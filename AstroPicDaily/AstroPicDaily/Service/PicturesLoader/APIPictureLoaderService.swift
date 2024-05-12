@@ -21,7 +21,9 @@ extension APIPictureLoaderService: APIPictureLoaderServiceProtocol {
         let request = APIPictureLoaderRequest.fetchPictures(request: details)
         let data = try await executeApiRequest(request)
         do {
-            return try JSONDecoder().decode([AstroPic].self, from: data)
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            return try decoder.decode([AstroPic].self, from: data)
         } catch {
             throw APIError.couldNotParseToSpecifiedModel
         }
@@ -47,5 +49,12 @@ extension APIPictureLoaderService {
         let hdurl: String?
         let title: String
         let url: String
+        let mediaType: String
+    }
+}
+
+extension AstroPic {
+    var isImageTypeMedia: Bool {
+        mediaType == "image"
     }
 }
