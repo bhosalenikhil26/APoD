@@ -36,6 +36,11 @@ struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
                 EmptyView()
             }
         }
+        .onAppear {
+            Task {
+                await viewModel.viewAppeared()
+            }
+        }
     }
 }
 

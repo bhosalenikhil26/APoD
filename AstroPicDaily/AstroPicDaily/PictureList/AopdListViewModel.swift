@@ -15,6 +15,7 @@ protocol AopdListViewModelProtocol: ObservableObject {
     func didSelectPicture(_ picture: AstroPic) async
     func didTapRetry() async
     func getPictureCellViewModel(for picture: AstroPic) -> PictureCellViewModel
+    func viewAppeared() async
 }
 
 final class AopdListViewModel {
@@ -28,13 +29,14 @@ final class AopdListViewModel {
 
     init(pictureLoaderService: PictureLoaderServiceProtocol & ImageDownloaderServiceProtocol) {
         self.pictureLoaderService = pictureLoaderService
-        Task {
-            await loadPictures()
-        }
     }
 }
 
 extension AopdListViewModel: AopdListViewModelProtocol {
+    func viewAppeared() async {
+        await loadPictures()
+    }
+
     func didTapRetry() async {
         await loadPictures()
     }
