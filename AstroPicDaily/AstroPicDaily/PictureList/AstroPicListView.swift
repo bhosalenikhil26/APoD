@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
+struct AstroPicListView<ViewModel: AstroPicListViewModelProtocol>: View {
     @ObservedObject var viewModel: ViewModel
     @State var shouldShowPictureDetails: Bool = false
 
@@ -44,7 +44,7 @@ struct AopdListView<ViewModel: AopdListViewModelProtocol>: View {
     }
 }
 
-private extension AopdListView {
+private extension AstroPicListView {
     func getPictureListView(_ astronomyPics: [AstroPic]) -> some View {
         List(astronomyPics, id: \.self) { picture in
             PictureCellView(viewModel: viewModel.getPictureCellViewModel(for: picture))
@@ -61,10 +61,10 @@ private extension AopdListView {
 }
 
 #Preview {
-    AopdListView(viewModel: MockAopdListViewModel())
+    AstroPicListView(viewModel: MockAopdListViewModel())
 }
 
-final class MockAopdListViewModel: AopdListViewModelProtocol {
+final class MockAopdListViewModel: AstroPicListViewModelProtocol {
     var loadingState: LoadingState = .loaded(
         astronomyPics: [
             AstroPic(

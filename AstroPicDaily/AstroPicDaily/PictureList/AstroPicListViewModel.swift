@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol AopdListViewModelProtocol: ObservableObject {
+protocol AstroPicListViewModelProtocol: ObservableObject {
     var loadingState: LoadingState { get }
     var showAlert: Bool { get set }
     var pictureDetailsViewModel: PictureDetailsViewModel? { get }
@@ -18,7 +18,7 @@ protocol AopdListViewModelProtocol: ObservableObject {
     func viewAppeared() async
 }
 
-final class AopdListViewModel {
+final class AstroPicListViewModel {
     @Published var loadingState: LoadingState = .initial
     @Published var showAlert = false
 
@@ -32,7 +32,7 @@ final class AopdListViewModel {
     }
 }
 
-extension AopdListViewModel: AopdListViewModelProtocol {
+extension AstroPicListViewModel: AstroPicListViewModelProtocol {
     func viewAppeared() async {
         await loadPictures()
     }
@@ -51,7 +51,7 @@ extension AopdListViewModel: AopdListViewModelProtocol {
     }
 }
 
-private extension AopdListViewModel {
+private extension AstroPicListViewModel {
     @MainActor func updateState(_ state: LoadingState) async {
         loadingState = state
     }
