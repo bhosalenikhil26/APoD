@@ -53,7 +53,10 @@ extension PictureDetailsViewModel: PictureDetailsViewModelProtocol {
 
 private extension PictureDetailsViewModel {
     func fetchImage() async {
-        guard let uiImage = await pictureLoaderService.getImage(with: astroPic.url) else { return }
+        guard let uiImage = await pictureLoaderService.getImage(with: astroPic.url) else {
+            print("Unable to fetch image") //Log remote error
+            return
+       }
         image = uiImage
     }
 }
