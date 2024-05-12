@@ -40,8 +40,12 @@ extension PictureCellViewModel: PictureCellViewModelProtocol {
 
 private extension PictureCellViewModel {
     @MainActor func fetchImage() async {
-        guard picture.isImageTypeMedia else { return }
-        guard let uiImage = await imageDownloaderService.getImage(with: picture.url) else {
+        guard picture.isImageTypeMedia else {
+            print("Incorrect Media Type \(picture.mediaType)") //Log remote error
+            image = UIImage(named: "image-placeholder")
+            return
+        }
+        guard let uiImage = await imageDownloaderService.getImage(with: picture.hdurl ?? picture.url) else {
             print("Unable to fetch image") //Log remote error
             image = UIImage(named: "image-placeholder")
             return
