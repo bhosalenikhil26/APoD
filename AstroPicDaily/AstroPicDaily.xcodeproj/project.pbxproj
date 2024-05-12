@@ -25,6 +25,7 @@
 		C05FA4332BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4322BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift */; };
 		C05FA4352BEFECDF00C1C4BB /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4342BEFECDF00C1C4BB /* ImageCache.swift */; };
 		C05FA4382BEFFBC500C1C4BB /* AopdListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FA4372BEFFBC500C1C4BB /* AopdListViewModel.swift */; };
+		C0CD7E602BF0AF5300D14EE7 /* AopdListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CD7E5F2BF0AF5300D14EE7 /* AopdListViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		C05FA4322BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureLoaderServiceTests.swift; sourceTree = "<group>"; };
 		C05FA4342BEFECDF00C1C4BB /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		C05FA4372BEFFBC500C1C4BB /* AopdListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AopdListViewModel.swift; sourceTree = "<group>"; };
+		C0CD7E5F2BF0AF5300D14EE7 /* AopdListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AopdListViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				C05FA4002BEF8A5300C1C4BB /* AstroPicDailyTests.swift */,
 				C05FA4302BEFDF4100C1C4BB /* APIServiceTests.swift */,
 				C05FA4322BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift */,
+				C0CD7E5F2BF0AF5300D14EE7 /* AopdListViewModelTests.swift */,
 			);
 			path = AstroPicDailyTests;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 			files = (
 				C05FA4312BEFDF4100C1C4BB /* APIServiceTests.swift in Sources */,
 				C05FA4012BEF8A5300C1C4BB /* AstroPicDailyTests.swift in Sources */,
+				C0CD7E602BF0AF5300D14EE7 /* AopdListViewModelTests.swift in Sources */,
 				C05FA4332BEFE16F00C1C4BB /* PictureLoaderServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
