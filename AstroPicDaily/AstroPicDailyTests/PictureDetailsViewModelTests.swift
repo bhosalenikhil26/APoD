@@ -14,7 +14,6 @@ final class PictureDetailsViewModelTests: XCTestCase {
 
     override func setUpWithError() throws {
         mockPictureLoaderService = MockPictureLoaderService()
-        pictureDetailsViewModel = PictureDetailsViewModel(astroPic: astroPic, pictureLoaderService: mockPictureLoaderService)
     }
 
     override func tearDownWithError() throws {
@@ -23,6 +22,7 @@ final class PictureDetailsViewModelTests: XCTestCase {
     }
 
     func testGetImage_whenGetImageIsSuccessful_shouldSetFetchedImageToStoredproperty() async {
+        pictureDetailsViewModel = PictureDetailsViewModel(astroPic: getAstroPic(), pictureLoaderService: mockPictureLoaderService)
         mockPictureLoaderService.shouldGetImageFail = false
         XCTAssertNotNil(pictureDetailsViewModel.image)
         await pictureDetailsViewModel.viewAppeared()
@@ -30,29 +30,40 @@ final class PictureDetailsViewModelTests: XCTestCase {
     }
 
     func testGetImage_whenGetImageFails_shouldNotAssignNilToStoredProperty() async {
+        pictureDetailsViewModel = PictureDetailsViewModel(astroPic: getAstroPic(), pictureLoaderService: mockPictureLoaderService)
         mockPictureLoaderService.shouldGetImageFail = true
         XCTAssertNotNil(pictureDetailsViewModel.image)
         await pictureDetailsViewModel.viewAppeared()
         XCTAssertEqual(UIImage(named: "image-placeholder"), pictureDetailsViewModel.image)
     }
 
-    private var astroPic: AstroPic {
+    func testGetImage_whenMediaTypeIsNotImage_shouldReturnWithoutCallingMethodFromService() async {
+        pictureDetailsViewModel = PictureDetailsViewModel(astroPic: getAstroPic(with: "video"), pictureLoaderService: mockPictureLoaderService)
+        mockPictureLoaderService.shouldGetImageFail = false
+        XCTAssertNotNil(pictureDetailsViewModel.image)
+        await pictureDetailsViewModel.viewAppeared()
+        XCTAssertEqual(UIImage(named: "image-placeholder"), pictureDetailsViewModel.image)
+        XCTAssertTrue(mockPictureLoaderService.getImageCallCounter == 0)
+    }
+
+    func getAstroPic(with mediaType: String = "image") -> AstroPic {
         AstroPic(
             copyright: nil,
             date: "date",
             explanation: "explanation",
             hdurl: "hdurl",
             title: "title",
-            url: "url")
+            url: "url",
+            mediaType: mediaType)
     }
 }
 
-private final class MockPictureLoaderService: PictureLoaderServiceProtocol {
+private final class MockPictureLoaderService: ImageDownloaderServiceProtocol {
     var shouldGetImageFail: Bool = false
-
-    func loadLastAstroPictures(numberOfDays: Int) async throws -> [AstroPicDaily.AstroPic] { [] }
+    var getImageCallCounter: Int = 0
 
     func getImage(with url: String) async -> UIImage? {
+        getImageCallCounter += 1
         guard shouldGetImageFail else {
             return UIImage(named: "close")
         }
